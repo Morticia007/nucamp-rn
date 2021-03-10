@@ -9,7 +9,7 @@ import { createAppContainer } from 'react-navigation';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import { Icon } from 'react-native-elements';
-import SafeAreaView from 'react-native-safe-area-view';
+import SafeAreaView from 'react-native-safe-area-view'
 
 const DirectoryNavigator = createStackNavigator(
   {
