@@ -1,0 +1,46 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "0.1.10",
+    "expo": "38",
+    "expo-status-bar": "~1.0.3",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-elements": "2.2.1",
+    "react-native-gesture-handler": "~1.6.0",
+    "react-native-reanimated": "~1.9.0",
+    "react-native-safe-area-context": "~3.0.7",
+    "react-native-screens": "~2.9.0",
+    "react-native-web": "~0.13.12",
+    "react-navigation": "4",
+    "react-navigation-drawer": "^2.7.0",
+    "react-navigation-stack": "^1.10.3",
+    "yarn": "^1.22.10"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.9.0",
+    "lite-server": "^2.6.1"
+  },
+  "private": true,
+  "name": "nucampsite",
+  "description": "",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morticia007/Nucamp-React-Native.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Morticia007/Nucamp-React-Native/issues"
+  },
+  "homepage": "https://github.com/Morticia007/Nucamp-React-Native#readme"
+}
