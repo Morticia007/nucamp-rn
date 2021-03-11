@@ -102,7 +102,7 @@ const ContactNavigator = createStackNavigator(
         color: '#fff'
       },
       headerLeft: <Icon
-        name='address-card'
+        name='home'
         type='font-awesome'
         iconStyle={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()}
