@@ -3,11 +3,11 @@ import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
-import About from './AboutComponent';
-import Contact from './ContactComponent';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 
@@ -19,10 +19,10 @@ const DirectoryNavigator = createStackNavigator(
         headerLeft: <Icon
           name='list'
           type='font-awesome'
-          iconStyle={StyleSheet.stackIcon}
-          onpress={() => navigation.toggleDrawer()}
+          iconStyle={styles.stackIcon}
+          onPress={() => navigation.toggleDrawer()}
         />
-      })
+      }),
     },
 
     CampsiteInfo: { screen: CampsiteInfo },
@@ -58,7 +58,7 @@ const HomeNavigator = createStackNavigator(
       headerLeft: <Icon
         name='home'
         type='font-awesome'
-        iconStyle={StyleSheet.stackIcon}
+        iconStyle={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()}
       />
     }),
@@ -81,11 +81,11 @@ const AboutNavigator = createStackNavigator(
       headerLeft: <Icon
         name='home'
         type='font-awesome'
-        iconStyle={StyleSheet.stackIcon}
+        iconStyle={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()}
       />
-    })
-  }
+    }),
+  },
 );
 const ContactNavigator = createStackNavigator(
   {
@@ -107,8 +107,8 @@ const ContactNavigator = createStackNavigator(
         iconStyle={styles.stackIcon}
         onPress={() => navigation.toggleDrawer()}
       />
-    })
-  }
+    }),
+  },
 );
 
 const CustomDrawerContentComponent = props => (
@@ -125,9 +125,7 @@ const CustomDrawerContentComponent = props => (
         </View>
       </View>
       <DrawerItems {...props} />
-
     </SafeAreaView>
-
   </ScrollView>
 );
 
@@ -157,8 +155,8 @@ const MainNavigator = createDrawerNavigator(
             size={24}
             color={tintColor}
           />
-        )
-      }
+        ),
+      },
     },
     About: {
       screen: AboutNavigator,
