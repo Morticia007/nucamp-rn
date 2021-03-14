@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite } from '../redux/ActionCreators';
@@ -23,10 +22,7 @@ function RenderCampsite(props) {
 
   if (campsite) {
     return (
-      <Card
-        featuredTitle={campsite.name}
-        image={{ uri: baseUrl + campsite.image }}
-      >
+      <Card featuredTitle={campsite.name} image={{ uri: campsite.image }}>
         <Text style={{ margin: 10 }}>{campsite.description}</Text>
         <Icon
           name={props.favorite ? 'heart' : 'heart-o'}
@@ -68,13 +64,6 @@ function RenderComments({ comments }) {
 }
 
 class CampsiteInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      favorite: false,
-    };
-  }
-
   markFavorite(campsiteId) {
     this.props.postFavorite(campsiteId);
   }

@@ -18,7 +18,6 @@ class Directory extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-
     const renderDirectoryItem = ({ item }) => {
       return (
         <Tile
@@ -26,7 +25,7 @@ class Directory extends Component {
           caption={item.description}
           featured
           onPress={() => navigate('CampsiteInfo', { campsiteId: item.id })}
-          imageSrc={{ uri: baseUrl + item.image }}
+          imageSrc={{ uri: item.image }}
         />
       );
     };

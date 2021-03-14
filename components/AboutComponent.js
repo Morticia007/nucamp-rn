@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, FlatList } from 'react-native';
+import { Text, ScrollView, FlatList, View } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -32,17 +32,17 @@ class About extends Component {
     title: 'About Us',
   };
 
-  render() {
-    const renderPartner = ({ item }) => {
-      return (
-        <ListItem
-          title={item.name}
-          subtitle={item.description}
-          leftAvatar={{ source: { uri: baseUrl + item.image } }}
-        />
-      );
-    };
+  renderPartner = ({ item }) => {
+    return (
+      <ListItem
+        title={item.name}
+        subtitle={item.description}
+        leftAvatar={{ source: { uri: item.image } }}
+      />
+    );
+  };
 
+  render() {
     if (this.props.partners.isLoading) {
       return (
         <ScrollView>
@@ -63,7 +63,18 @@ class About extends Component {
         </ScrollView>
       );
     }
-    return <ScrollView />;
+    return (
+      <ScrollView>
+        <Mission />
+        <View>
+          <FlatList
+            renderItem={this.renderPartner}
+            keyExtractor={(item) => item.id}
+            data={this.props.partners.partners}
+          />
+        </View>
+      </ScrollView>
+    );
   }
 }
 

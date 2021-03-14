@@ -171,8 +171,8 @@
   "promotions": [
     {
       "id": 0,
-      "name": "Mountain Adventure",
-      "image": "/assets/images/breadcrumb-trail.jpg",
+      "name": "Mountain asd",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/breadcrumb-trail.jpg",
       "featured": true,
       "description": "Book a 5-day mountain trek with a seasoned outdoor guide! Fly fishing equipment and lessons provided."
     }
@@ -181,28 +181,28 @@
     {
       "id": 0,
       "name": "Bootstrap Outfitters",
-      "image": "/Users/jacquelynelder/Desktop/NucampFolder/4-React-Native.nosync/nucampsite/components/images/bootstrap-logo.png",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/bootstrap-logo.png",
       "featured": false,
       "description": "Bootstrap Outfitters supplies you with the gear you need at prices you can't beat."
     },
     {
       "id": 1,
       "name": "Git Out Expeditions",
-      "image": "/Users/jacquelynelder/Desktop/NucampFolder/4-React-Native.nosync/nucampsite/components/images/git-logo.png",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/git-logo.png",
       "featured": false,
       "description": "Join Git Out Expeditions to explore new horizons with a group of other adventurers!"
     },
     {
       "id": 2,
       "name": "Mongo Fly Shop",
-      "image": "/Users/jacquelynelder/Desktop/NucampFolder/4-React-Native.nosync/nucampsite/components/images/mongo-logo.png",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/mongo-logo.png",
       "featured": false,
       "description": "Need a new fishing pole, a tacklebox, or flies of all kinds? Stop by Mongo Fly Shop."
     },
     {
       "id": 3,
       "name": "Node Outdoor Apparel",
-      "image": "/Users/jacquelynelder/Desktop/NucampFolder/4-React-Native.nosync/nucampsite/components/images/node-logo.png",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/node-logo.png",
       "featured": true,
       "description": "From polar fleeces to swimsuits, hiking boots to waders, a visit to Node will be sure to get you covered."
     }
@@ -211,7 +211,7 @@
     {
       "id": 0,
       "name": "React Lake Campground",
-      "image": "/assets/images/react-lake.jpg",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/react-lake.jpg",
       "elevation": 1233,
       "featured": false,
       "description": "Nestled in the foothills of the Chrome Mountains, this campground on the shores of the pristine React Lake is a favorite for fly fishers."
@@ -219,7 +219,7 @@
     {
       "id": 1,
       "name": "Chrome River Campground ",
-      "image": "/assets/images/chrome-river.jpg",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/chrome-river.jpg",
       "elevation": 877,
       "featured": false,
       "description": "Spend a few sunny days and starry nights beneath a canopy of old-growth firs at this enchanting spot by the Chrome River."
@@ -227,7 +227,7 @@
     {
       "id": 2,
       "name": "Breadcrumb Trail Campground",
-      "image": "/assets/images/breadcrumb-trail.jpg",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/breadcrumb-trail.jpg",
       "elevation": 2901,
       "featured": false,
       "description": "Let NuCamp be your guide to this off-the-beaten-path, hike-in-only campground."
@@ -235,7 +235,7 @@
     {
       "id": 3,
       "name": "Redux Woods Campground",
-      "image": "/assets/images/redux-woods.jpg",
+      "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/redux-woods.jpg",
       "elevation": 42,
       "featured": true,
       "description": "You'll never want to leave this hidden gem, deep within the lush Redux Woods."

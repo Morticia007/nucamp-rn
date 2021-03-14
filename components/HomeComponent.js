@@ -26,8 +26,9 @@ function RenderItem(props) {
     );
   }
   if (item) {
+    console.log({ currentImageURL: item.image });
     return (
-      <Card featuredTitle={item.name} image={{ uri: baseUrl + item.image }}>
+      <Card featuredTitle={item.name} image={{ uri: item.image }}>
         <Text style={{ margin: 10 }}>{item.description}</Text>
       </Card>
     );
