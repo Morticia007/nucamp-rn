@@ -11,7 +11,7 @@
       "id": 0,
       "campsiteId": 0,
       "rating": 5,
-      "text": "What a magnificent poop!",
+      "text": "What a magnificent View!",
       "author": "Tinus Lorvaldes",
       "date": "2018-10-25T16:30Z"
     },
@@ -166,12 +166,47 @@
       "text": "I caught a world-record-breaking trout here on my last visit.",
       "author": "McKenzie Sebastian",
       "date": "2019-02-18T18:12Z"
+    },
+    {
+      "id": 20
+    },
+    {
+      "author": "Manny Hagman",
+      "campsiteId": 0,
+      "date": "2020-07-23T19:44Z",
+      "rating": 3,
+      "text": "Jacquelyn is the best!",
+      "id": 21
+    },
+    {
+      "author": "Manny Hagman",
+      "campsiteId": 0,
+      "date": "2020-07-23T19:44Z",
+      "rating": 3,
+      "text": "Jacquelyn is the best!",
+      "id": 22
+    },
+    {
+      "author": "Manny authorsdasd",
+      "campsiteId": 0,
+      "date": "2020-07-23T19:44Z",
+      "rating": 3,
+      "text": "Jacquelyn is the best!",
+      "id": 23
+    },
+    {
+      "author": "Manny authorsdasd",
+      "campsiteId": 0,
+      "date": "2020-07-23T19:44Z",
+      "rating": 3,
+      "text": "Jacquelyn is the best!",
+      "id": 24
     }
   ],
   "promotions": [
     {
       "id": 0,
-      "name": "Mountain asd",
+      "name": "Mountain View",
       "image": "/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/breadcrumb-trail.jpg",
       "featured": true,
       "description": "Book a 5-day mountain trek with a seasoned outdoor guide! Fly fishing equipment and lessons provided."

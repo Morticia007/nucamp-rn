@@ -165,3 +165,29 @@ export const addFavorite = (campsiteId) => ({
   type: ActionTypes.ADD_FAVORITE,
   payload: campsiteId,
 });
+
+export const addComment = (comment) => (
+  console.log('logging add Comment', { comment }),
+  {
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment,
+  }
+);
+
+export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
+  console.log('logging postComment', { campsiteId, rating, author, text });
+
+  const newComment = {
+    id,
+    campsiteId,
+    rating,
+    author,
+    text,
+    date: new Date().toISOString(),
+  };
+  console.log('logging postComment', { newComment });
+
+  setTimeout(() => {
+    dispatch(addComment(newComment));
+  }, 2000);
+};
