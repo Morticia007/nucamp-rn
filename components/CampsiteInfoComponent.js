@@ -33,10 +33,7 @@ function RenderCampsite(props) {
 
   if (campsite) {
     return (
-      <Card
-        featuredTitle={campsite.name}
-        image={{ uri: baseUrl + campsite.image }}
-      >
+      <Card featuredTitle={campsite.name} image={{ uri: campsite.image }}>
         <Text style={{ margin: 10 }}>{campsite.description}</Text>
         <View style={styles.cardRow}>
           <Icon
