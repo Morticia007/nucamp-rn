@@ -33,16 +33,14 @@ function RenderCampsite(props) {
 
   if (campsite) {
     return (
-      <Card
-        featuredTitle={campsite.name}
-        image={{ uri: baseUrl + campsite.image }}
-      >
+      <Card featuredTitle={campsite.name} image={{ uri: campsite.image }}>
         <Text style={{ margin: 10 }}>{campsite.description}</Text>
         <View style={styles.cardRow}>
           <Icon
             name={props.favorite ? 'heart' : 'heart-o'}
             type='font-awesome'
             color='#f50'
+            size={30}
             raisedreversed
             onPress={() =>
               props.favorite
@@ -54,6 +52,7 @@ function RenderCampsite(props) {
             name={'pencil'}
             type='font-awesome'
             color='#5637DD'
+            size={30}
             raisedreversed
             onPress={() => props.toggleModal()}
           />
@@ -128,7 +127,7 @@ class CampsiteInfo extends Component {
       campsiteId,
       this.state.rating,
       this.state.author,
-      this.state.comment,
+      this.state.text,
     );
     this.toggleModal();
   };
@@ -184,7 +183,7 @@ class CampsiteInfo extends Component {
               leftIcon={{ type: 'font-awesome', name: 'comment-o' }}
               style={styles}
               onChangeText={(value) => this.setState({ text: value })}
-              value={this.state.value}
+              value={this.state.text}
             />
 
             <View>
@@ -202,25 +201,13 @@ class CampsiteInfo extends Component {
               <Button
                 title='Cancel'
                 color='#5637DD'
-                onPress={() => {
-                  this.props.handleComment();
-                  this.props.resetForm();
-                }}
+                onPress={this.resetForm}
               ></Button>
             </View>
-          </View>
-          <View>
-            <Text> {/*JSON.stringify({ state: this.state })*/}</Text>
-          </View>
-          <View>
-            <Text>{JSON.stringify({ state: this.state }, null, 2)}</Text>
           </View>
         </Modal>
 
         <RenderComments comments={comments} />
-        <View>
-          <Text>{JSON.stringify({ state: this.state }, null, 2)}</Text>
-        </View>
       </ScrollView>
     );
   }

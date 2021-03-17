@@ -19,6 +19,7 @@ import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import Reservation from './ReservationComponent';
+import Favorites from './FavoritesComponent';
 import {
   fetchCampsites,
   fetchComments,
@@ -137,6 +138,31 @@ const ReservationNavigator = createStackNavigator(
     }),
   },
 );
+// here's where I put this Bullshit :-)
+const FavoritesNavigator = createStackNavigator(
+  {
+    Favorites: { screen: Favorites }, // <--- turn green you little bastard!!
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#5637DD',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: '#fff',
+      },
+      headerLeft: (
+        <Icon
+          name='heart'
+          type='font-awesome'
+          iconStyle={styles.stackIcon}
+          onPress={() => navigation.toggleDrawer()}
+        />
+      ),
+    }),
+  },
+);
 
 const ContactNavigator = createStackNavigator(
   {
@@ -213,6 +239,17 @@ const MainNavigator = createDrawerNavigator(
         ),
       },
     },
+    // here's some more bullshit :-)
+    Favorites: {
+      screen: FavoritesNavigator,
+      navigationOptions: {
+        drawerLabel: 'My Favorites',
+        drawerIcon: ({ tintColor }) => (
+          <Icon name='heart' type='font-awesome' size={24} color={tintColor} />
+        ),
+      },
+    },
+
     About: {
       screen: AboutNavigator,
       navigationOptions: {

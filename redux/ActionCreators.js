@@ -178,7 +178,7 @@ export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
   console.log('logging postComment', { campsiteId, rating, author, text });
 
   const newComment = {
-    id,
+    Id,
     campsiteId,
     rating,
     author,
@@ -190,4 +190,39 @@ export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
   setTimeout(() => {
     dispatch(addComment(newComment));
   }, 2000);
+};
+
+export const favoritesLoading = () => ({
+  type: ActionTypes.FAVORITES_LOADING,
+});
+
+export const favoritesFailed = (errMess) => ({
+  type: ActionTypes.FAVORITES_FAILED,
+  payload: errMess,
+});
+
+export const fetchFavorites = () => (dispatch) => {
+  dispatch(favoritesLoading());
+
+  return fetch(baseUrl + 'favorites')
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          const error = new Error(
+            `Error ${response.status}: ${response.statusText}`,
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        const errMess = new Error(error.message);
+        throw errMess;
+      },
+    )
+    .then((response) => response.json())
+    .then((favorites) => dispatch(addFavorites(favorites)))
+    .catch((error) => dispatch(favoritesFailed(error.message)));
 };
