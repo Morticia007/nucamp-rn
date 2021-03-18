@@ -178,7 +178,7 @@ export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
   console.log('logging postComment', { campsiteId, rating, author, text });
 
   const newComment = {
-    Id,
+    id,
     campsiteId,
     rating,
     author,
