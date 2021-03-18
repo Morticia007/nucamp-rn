@@ -32,10 +32,18 @@ const mapDispatchToProps = {
 
 function RenderCampsite(props) {
   const { campsite } = props;
+  const view = React.createRef();
   const recognizeDrag = ({ dx }) => (dx < -200 ? true : false);
 
   const Pan = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
+    onPanResponderGrant: () => {
+      view.current
+        .rubberBand(1000)
+        .then((endState) =>
+          console.log(endState.finished ? 'finished' : 'canceled'),
+        );
+    },
     onPanResponderEnd: (e, gestureState) => {
       console.log('pan responder end', gestureState);
       if (recognizeDrag(gestureState)) {
@@ -69,6 +77,7 @@ function RenderCampsite(props) {
         animation='fadeInDown'
         duration={2000}
         delay={1000}
+        ref={view}
         {...Pan.panHandlers}
       >
         <Card featuredTitle={campsite.name} image={{ uri: campsite.image }}>
