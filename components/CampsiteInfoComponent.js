@@ -7,11 +7,12 @@ import {
   Modal,
   Button,
   StyleSheet,
+  Alert,
+  PanResponder,
 } from 'react-native';
 import { Card, Rating, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Animatable from 'react-native-animatable';
-
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite, postComment } from '../redux/ActionCreators';
@@ -31,10 +32,45 @@ const mapDispatchToProps = {
 
 function RenderCampsite(props) {
   const { campsite } = props;
+  const recognizeDrag = ({ dx }) => (dx < -200 ? true : false);
+
+  const Pan = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderEnd: (e, gestureState) => {
+      console.log('pan responder end', gestureState);
+      if (recognizeDrag(gestureState)) {
+        Alert.alert(
+          'add Favorite',
+          'Are you sure you wish to add' + campsite.name + 'to Favorites?',
+          [
+            {
+              text: 'Cancel',
+              style: 'cancel',
+              onPress: () => console.log('Cancel Pressed'),
+            },
+            {
+              text: 'OK',
+              onPress: () =>
+                props.favorite
+                  ? console.log('Already Set as Favorite')
+                  : props.markFavorite(),
+            },
+          ],
+          { cancelable: false },
+        );
+      }
+      return true;
+    },
+  });
 
   if (campsite) {
     return (
-      <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
+      <Animatable.View
+        animation='fadeInDown'
+        duration={2000}
+        delay={1000}
+        {...Pan.panHandlers}
+      >
         <Card featuredTitle={campsite.name} image={{ uri: campsite.image }}>
           <Text style={{ margin: 10 }}>{campsite.description}</Text>
           <View style={styles.cardRow}>
