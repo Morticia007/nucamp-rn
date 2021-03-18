@@ -226,3 +226,7 @@ export const fetchFavorites = () => (dispatch) => {
     .then((favorites) => dispatch(addFavorites(favorites)))
     .catch((error) => dispatch(favoritesFailed(error.message)));
 };
+export const deleteFavorite = (campsiteId) => ({
+  type: ActionTypes.DELETE_FAVORITE,
+  payload: campsiteId,
+});
