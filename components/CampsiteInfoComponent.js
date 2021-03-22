@@ -34,6 +34,7 @@ function RenderCampsite(props) {
   const { campsite } = props;
   const view = React.createRef();
   const recognizeDrag = ({ dx }) => (dx < -200 ? true : false);
+  const recognizeComment = ({ dx }) => (dx > 200 ? true : false);
 
   const Pan = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -66,6 +67,8 @@ function RenderCampsite(props) {
           ],
           { cancelable: false },
         );
+      } else {
+        props.toggleModal();
       }
       return true;
     },
@@ -139,7 +142,7 @@ function RenderComments({ comments }) {
         <FlatList
           data={comments}
           renderItem={renderCommentItem}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.id}
         />
       </Card>
     </Animatable.View>

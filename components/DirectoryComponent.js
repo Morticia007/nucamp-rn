@@ -30,6 +30,9 @@ class Directory extends Component {
             onPress={() => navigate('CampsiteInfo', { campsiteId: item.id })}
             imageSrc={{ uri: item.image }}
           />
+          <View>
+            <Text>{JSON.stringify({ state: this.state })}</Text>
+          </View>
         </Animatable.View>
       );
     };
@@ -47,7 +50,7 @@ class Directory extends Component {
       <FlatList
         data={this.props.campsites.campsites}
         renderItem={renderDirectoryItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
       />
     );
   }
