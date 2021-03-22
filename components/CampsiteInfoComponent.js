@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Alert,
   PanResponder,
+  Share,
 } from 'react-native';
 import { Card, Rating, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -74,6 +75,17 @@ function RenderCampsite(props) {
     },
   });
 
+  const shareCampsite = (title, message, url) => {
+    Share.share(
+      {
+        title,
+        message: `${title}: ${message}: ${url}`,
+        url,
+      },
+      { dialogTitle: 'share ' + title },
+    );
+  };
+
   if (campsite) {
     return (
       <Animatable.View
@@ -105,6 +117,20 @@ function RenderCampsite(props) {
               size={30}
               raisedreversed
               onPress={() => props.toggleModal()}
+            />
+            <Icon
+              name={'share'}
+              type='font-awesome'
+              color='#5637DD'
+              size={30}
+              raisedreversed
+              onPress={() =>
+                shareCampsite(
+                  campsite.name,
+                  campsite.description,
+                  campsite.image,
+                )
+              }
             />
           </View>
         </Card>

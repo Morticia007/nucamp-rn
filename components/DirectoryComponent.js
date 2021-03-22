@@ -30,9 +30,6 @@ class Directory extends Component {
             onPress={() => navigate('CampsiteInfo', { campsiteId: item.id })}
             imageSrc={{ uri: item.image }}
           />
-          <View>
-            <Text>{JSON.stringify({ state: this.state })}</Text>
-          </View>
         </Animatable.View>
       );
     };
