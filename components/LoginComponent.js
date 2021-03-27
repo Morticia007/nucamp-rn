@@ -6,6 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { baseUrl } from '../shared/baseUrl';
+import * as ImageManipulator from 'expo-image-manipulator';
 
 class LoginTab extends Component {
   constructor(props) {
@@ -130,9 +131,18 @@ class RegisterTab extends Component {
       lastname: '',
       email: '',
       remember: false,
-      imageUrl: baseUrl + 'images/logo.png',
+      imageUrl:
+        '/Users/jacquelynhagman/workspaces/gitrepos/Nucamp-React-Native/components/images/logo.png',
+      ready: false,
+      error: '',
     };
   }
+
+  componentDidMount = async () => {
+    this.setState({
+      ready: true,
+    });
+  };
 
   static navigationOptions = {
     title: 'Register',
@@ -146,23 +156,118 @@ class RegisterTab extends Component {
   };
 
   getImageFromCamera = async () => {
-    const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
-    const cameraRollPermission = await Permissions.askAsync(
-      Permissions.CAMERA_ROLL,
-    );
-
-    if (
-      cameraPermission.status === 'granted' &&
-      cameraRollPermission.status === 'granted'
-    ) {
-      const capturedImage = await ImagePicker.launchCameraAsync({
-        allowsEditing: true,
-        aspect: [1, 1],
-      });
-      if (!capturedImage.cancelled) {
-        console.log(capturedImage);
-        this.setState({ imageUrl: capturedImage.uri });
+    try {
+      // expect alert or modal to pop up asking if its ok to use the camera
+      const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
+      // expect alert or modal to pop up asking if its ok to use the photos gallery
+      const cameraRollPermission = await Permissions.askAsync(
+        Permissions.CAMERA_ROLL,
+      );
+      // if a user chooses ok or accapted for both the camera permission question and the camera roll/gallery question
+      // then assign the result of the ImagePicker.launchCameraAsync to the capturedImage function. This will allow the user to edit the photo and
+      // assign an 1:1 aspect ratio
+      if (
+        cameraPermission.status === 'granted' &&
+        cameraRollPermission.status === 'granted'
+      ) {
+        const capturedImage = await ImagePicker.launchCameraAsync({
+          allowsEditing: true,
+          aspect: [1, 1],
+        });
+        // if a user takes a picture and does not cancel is log the image data to the console
+        // and change the value of the imageUrl in state to the new uri from the capturedImage object
+        if (!capturedImage.cancelled) {
+          console.log(capturedImage);
+          this.setState({ imageUrl: capturedImage.uri }, () => {
+            'Line 180 in Login Component, logging state immediately after setting the imageUrl to the capturedImage.uri when a user takes a pic',
+              { state: this.state };
+          });
+        }
       }
+      console.log('logging state at like 185 in Login Component', {
+        state: this.state,
+      });
+      this.processImage(this.state.imageUrl);
+    } catch (error) {
+      this.setState(
+        {
+          error: 'error taking user pic',
+        },
+        () =>
+          console.log('logging error in captureImage', { state: this.state }),
+      );
+    }
+  };
+
+  getImageFromGallery = async () => {
+    try {
+      const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
+
+      const cameraRollPermission = await Permissions.askAsync(
+        Permissions.CAMERA_ROLL,
+      );
+
+      if (
+        cameraPermission.status === 'granted' &&
+        cameraRollPermission.status === 'granted'
+      ) {
+        const capturedImage = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+
+        this.setState({
+          imageUrl: capturedImage.uri,
+        });
+        this.processImage(this.state.imageUrl);
+
+        if (!capturedImage.cancelled) {
+          console.log(capturedImage);
+          this.setState({ imageUrl: capturedImage.uri }, () => {
+            'Line 180 in Login Component, logging state immediately after setting the imageUrl to the capturedImage.uri when a user takes a pic',
+              { state: this.state };
+          });
+        }
+      }
+    } catch (error) {
+      this.setState(
+        {
+          error: 'error getting image from gallery',
+        },
+        () => console.log({ state: this.state }),
+      );
+    }
+  };
+
+  processImage = async (imgUri) => {
+    try {
+      const processedImage = await ImageManipulator.manipulateAsync(
+        imgUri,
+
+        [{ resize: { height: 400 } }],
+        {
+          format: ImageManipulator.SaveFormat.PNG,
+        },
+      );
+      console.log('line 211', { processedImage });
+      this.setState(
+        {
+          imageUrl: processedImage.uri,
+        },
+        () =>
+          console.log('line 217 checking if imageUrl has changed', {
+            state: this.state,
+          }),
+      );
+    } catch (error) {
+      this.setState(
+        {
+          error,
+        },
+        () => console.log({ state: this.state }),
+      );
     }
   };
 
@@ -193,7 +298,9 @@ class RegisterTab extends Component {
               loadingIndicatorSource={require('./images/logo.png')}
               style={styles.image}
             />
+
             <Button title='Camera' onPress={this.getImageFromCamera} />
+            <Button title='Gallery' onPress={this.getImageFromGallery} />
           </View>
           <Input
             placeholder='Username'

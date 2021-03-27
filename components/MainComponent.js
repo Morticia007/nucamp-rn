@@ -371,6 +371,9 @@ class Main extends Component {
         connectionMsg = 'You are now connected to a WiFi network.';
         break;
     }
+    Platform.OS === 'ios'
+      ? Alert.alert('Connection change:', connectionMsg)
+      : ToastAndroid.show(connectionMsg, ToastAndroid.LONG);
   };
 
   render() {
